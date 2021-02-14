@@ -29,7 +29,7 @@ namespace Mentor_2 //21 очко
                     if (yourHand > 22)
                     {
                         Console.WriteLine("Вы проиграли, у вас перебор " + yourHand);
-                        break;
+                        return;
                     }
                 }
                 
@@ -47,7 +47,7 @@ namespace Mentor_2 //21 очко
                     if (yourHand > 22)
                     {
                         Console.WriteLine("Вы проиграли, у вас перебор " + yourHand);
-                        break;
+                        return;
                     }
                 }
                 else
@@ -57,7 +57,7 @@ namespace Mentor_2 //21 очко
                     if (yourHand > 22)
                     {
                         Console.WriteLine("Вы проиграли, у вас перебор " + yourHand);
-                        break;
+                        return;
                     }
                 }
                 Console.WriteLine("У вас очков = " + yourHand);
@@ -79,7 +79,7 @@ namespace Mentor_2 //21 очко
             }
             Console.WriteLine("А теперь ходит комп");
             // Бытые нарушено, random в цикле карждый раз генерится заново, что позволяет появление повторов =(
-            for (int compHand = 0; compHand < 22; compHand++)
+            for (int compHand = 0; compHand < 16; )
             {
                 string cartValue = desk[random.Next(0, 52)];
 
@@ -124,11 +124,11 @@ namespace Mentor_2 //21 очко
                 compPoints = compHand;
                 Console.WriteLine("У компа карта "+cartValue +" в сумме очков "+ compPoints);
             }
-            if (yourPoints >= compPoints && yourPoints < 22)
+            if (yourPoints >= compPoints & yourPoints < 22)
             {
                 Console.WriteLine("Вы победили");
             }
-            if (yourPoints < compPoints && compPoints < 22)
+            if (yourPoints < compPoints & compPoints < 22)
             {
                 Console.WriteLine("Вы проиграли");
             }
