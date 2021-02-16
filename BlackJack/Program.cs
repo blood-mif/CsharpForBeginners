@@ -4,21 +4,29 @@ namespace Mentor_2 //21 очко
 {
     class Program
     {
+        static string[] shuffle(string[] deck)
+        {
+            Random random = new Random();
+            string cartValue = deck[random.Next(0, 52)];
+            string[] newDeck = new string[deck.Length - 1];
 
+            
+            return newDeck[];
+        }
         static void Main(string[] args)
         {
-            string[] desk = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "V", "D", "K", "T", "2", "3", "4", "5", "6", "7", "8", "9", "10", "V", "D", "K", "T", "2", "3", "4", "5", "6", "7", "8", "9", "10", "V", "D", "K", "T", "2", "3", "4", "5", "6", "7", "8", "9", "10", "V", "D", "K", "T" };
+            string[] deck = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "V", "D", "K", "T", "2", "3", "4", "5", "6", "7", "8", "9", "10", "V", "D", "K", "T", "2", "3", "4", "5", "6", "7", "8", "9", "10", "V", "D", "K", "T", "2", "3", "4", "5", "6", "7", "8", "9", "10", "V", "D", "K", "T" };
            
             Random random = new Random();
 
             
             int cartValueUser = 0;
-            int yourPoints =0;
-            int compPoints =0;
+            int userPoints =0;
+            int computerPoints =0;
 
             for (int yourHand = 0; yourHand < 22;)
             {
-                string cartValue = desk[random.Next(0, 52)];
+                string cartValue = deck[random.Next(0, 52)];
 
 
                 Console.WriteLine("У вас карта " + cartValue);
@@ -71,7 +79,7 @@ namespace Mentor_2 //21 очко
                 else
                     {
                         Console.WriteLine("у вас " + yourHand);
-                    yourPoints = yourHand;
+                    userPoints = yourHand;
                     break;
                     
                     }
@@ -81,7 +89,7 @@ namespace Mentor_2 //21 очко
             // Бытые нарушено, random в цикле карждый раз генерится заново, что позволяет появление повторов =(
             for (int compHand = 0; compHand < 16; )
             {
-                string cartValue = desk[random.Next(0, 52)];
+                string cartValue = deck[random.Next(0, 52)];
 
                 if (cartValue == "V" || cartValue == "D" || cartValue == "K")
                 {
@@ -121,14 +129,14 @@ namespace Mentor_2 //21 очко
                         break;
                     }
                 }
-                compPoints = compHand;
-                Console.WriteLine("У компа карта "+cartValue +" в сумме очков "+ compPoints);
+                computerPoints = compHand;
+                Console.WriteLine("У компа карта "+cartValue +" в сумме очков "+ computerPoints);
             }
-            if (yourPoints >= compPoints & yourPoints < 22)
+            if (userPoints >= computerPoints & userPoints < 22)
             {
                 Console.WriteLine("Вы победили");
             }
-            if (yourPoints < compPoints & compPoints < 22)
+            if (userPoints < computerPoints & computerPoints < 22)
             {
                 Console.WriteLine("Вы проиграли");
             }
