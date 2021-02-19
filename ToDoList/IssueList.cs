@@ -78,34 +78,35 @@ namespace ToDoList
 
         internal void Delete(int selectedIssueNumber)
         {
+            int issueIndexToDelete = selectedIssueNumber - 1;
+            int issueCount = Count();
+         
+            for (int i = issueIndexToDelete; i < issueCount; i++)
             
+            {
+                _issues[i] = _issues[i + 1];
+            }
             
-            _issues[selectedIssueNumber - 1] = null;
+            _issues[issueCount] = null;
+            
+        }
 
-            for (int i = 0; i < _issues.Length; i++)
+        internal void EditStatusIssue(int selectedIssueNumber)
+        {
+            _issues[selectedIssueNumber - 1].Status = Status.Done;
+           
+            /*Если у будет нужно менять статусы обратно
+             * 
+             * if (_issues[selectedIssueNumber - 1].Status == Status.New)
+             {
+                 _issues[selectedIssueNumber - 1].Status = Status.Done;
+             }
+            else
             {
-
+            _issues[selectedIssueNumber - 1].Status = Status.New;
             }
-            /*
-            string[] newNames = new string[names.Length - 1];
+             */
 
-            for (int i = 0; i < newNames.Length; i++)
-            {
-                if (indexValue == i)
-                {
-
-                    for (int j = i; j < newNames.Length; j++)
-                    {
-                        newNames[i] = names[i + 1];
-                        i++;
-                    }
-                    break;
-                }
-                newNames[i] = names[i];
-            }
-
-            names = newNames;
-            */
         }
     }
 }

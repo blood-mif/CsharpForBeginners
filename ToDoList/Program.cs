@@ -48,12 +48,10 @@ namespace ToDoList
                 switch (operation.ToLower())
                 {
                     case Operations.SHOW_ISSUES_LIST:
-
                         PrintIssues();
                         break;
 
                     case Operations.ADD_NEW_ISSUE:
-
                         CreateNewIssues();
                         break;
 
@@ -66,7 +64,7 @@ namespace ToDoList
                         break;
 
                     case Operations.SET_ISSUE_AS_DONE:
-                        Console.WriteLine("выполнение задачи");
+                        EditStatusIssue();
                         break;
 
                     case Operations.EXIT:
@@ -89,6 +87,13 @@ namespace ToDoList
            
 
 
+        }
+
+        private static void EditStatusIssue()
+        {
+            int selectedIssueNumber = GetIssueNumber();
+
+            _issueList.EditStatusIssue(selectedIssueNumber);
         }
 
         private static void DeleteIssue()
