@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace MyList
 {
@@ -6,22 +7,32 @@ namespace MyList
     {
         private static void Main(string[] args)
         {
+            // передать string, double, int в list +
             List list = new List();
-            list.Add(1);
-            list.Add(2);
+            list.Add("N1ce");
+            list.Add(2.23);
             list.Add(3);
+         
 
+           list.Remove(3);
             do
             {
                 Console.WriteLine(list.Current);
 
             } while (list.MoveNext());
 
+            
 
-            //for (; list.Current != null ; list.MoveNext())
+            //do
             //{
-            //    Console.WriteLine(list.Current);
-            //}
+            //    Console.WriteLine(list.Current );
+
+            //} while (list.MoveNext());
+
+            
+
+
+
 
             Console.WriteLine();
 
