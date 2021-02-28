@@ -11,11 +11,15 @@ namespace MyList
         private Box _current;
         private int _count;
 
+
+
+
         public List()
         {
             _head = null;
             _tail = null;
             _count = 0;
+            
         }
 
         public int Count {
@@ -25,12 +29,12 @@ namespace MyList
             }
         }
 
-        public int Current
+
+
+        public object Current
         {
             get
             {
-
-
                 return _current.Value;
             }
         }
@@ -46,9 +50,11 @@ namespace MyList
             return _current != null;
         }
 
-        public void Add(int value)
+        public void Add(object value)
         {
             Box box = new Box(value);
+
+            
 
             if (_head == null && _tail == null)
             {
@@ -61,14 +67,51 @@ namespace MyList
                 _tail.Next = box;
                 _tail = box;
             }
-
+            
             _count++;
         }
 
-        public void Remove(int value)
+
+
+                // удаление элемента
+        public bool Remove(object value)
         {
-            // реализовать метод
-            _count--;
+            Box current = _head;
+            Box previous = null;
+ 
+            while (current != null)
+            {
+                if (current.Value.Equals(value))
+                {
+                    // Если узел в середине или в конце
+                    if (previous != null)
+                    {
+                        // убираем узел current, теперь previous ссылается не на current, а на current.Next
+                        previous.Next = current.Next;
+ 
+                        // Если current.Next не установлен, значит узел последний,
+                        // изменяем переменную tail
+                        if (current.Next == null)
+                            _tail = previous;
+                    }
+                    else
+                    {
+                        // если удаляется первый элемент
+                        // переустанавливаем значение head
+                        _head = _head.Next;
+ 
+                        // если после удаления список пуст, сбрасываем tail
+                        if (_head == null)
+                            _tail = null;
+                    }
+                    _count--;
+                    return true;
+                }
+ 
+                previous = current;
+                current = current.Next;
+            }
+            return false;
         }
 
 
