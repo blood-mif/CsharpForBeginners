@@ -19,7 +19,7 @@ namespace MyList
             _count = 0;
         }
 
-        public int Current
+        public object Current
         {
             get
             {
@@ -67,7 +67,7 @@ namespace MyList
             _count++;
         }
 
-        public int Pull ()
+        public object Pull ()
         {
 
             // Удалять голову, если хвост указывает на голову ( голова == хвост )
@@ -76,10 +76,14 @@ namespace MyList
                 return 0;
             }
 
-            int value = _tail.Value;
+            object value = _tail.Value;
             _tail = _tail.Next;
             _current = _tail;
             _count--;
+
+            if (_head == _tail)
+                _head = null;
+            
             return value;
         }
 

@@ -15,7 +15,7 @@ namespace MyList
             _count = 0;
         }
 
-        public int Current
+        public object Current
         {
             get
             {
@@ -43,7 +43,7 @@ namespace MyList
             }
         }
 
-        public void Enqueue(int value)
+        public void Enqueue(object value)
         {
             Box box = new Box(value);
 
@@ -61,7 +61,7 @@ namespace MyList
             _count++;
         }
 
-        public int Dequeue()
+        public object Dequeue()
         // сделать так , что бы хвост не оставался 
 
         {
@@ -70,10 +70,14 @@ namespace MyList
                 return  0;
             }
 
-            int value = _head.Value;
+            object value = _head.Value;
             _head = _head.Next;
             _current = _head;
             _count--;
+
+            if (_count == 0)
+                _tail = null;
+            
             return value;
         }
 
