@@ -2,13 +2,17 @@
 {
     internal class Box
     {
-        public Box(int value)
+        public Box(object value)
         {
             Value = value;
             Next = null;
+            
         }
-        public int Value { get; set; }
+        public object Value { get; set; }
         public Box Next { get; set; }
+
+
+
 
 
 
