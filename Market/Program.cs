@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Market
 {
@@ -6,7 +7,9 @@ namespace Market
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            StartProgram program = new StartProgram();
+            program.Start();
+            
         }
     }
 }
