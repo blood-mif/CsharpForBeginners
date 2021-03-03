@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Market
 {
-    public static class Operations
+    public static class DisplayOperations
     {
         public const string SHOW_WINDOW_LIST = "1";
         public const string ADD_NEW_WINDOW = "2";
@@ -22,19 +22,40 @@ namespace Market
     public class StartProgram
     {
 
-        
+        Market market = new Market();
+
+        private string GetValue(string text)
+        {
+            Console.WriteLine(text);
+            return Console.ReadLine();
+
+        }
+
+        private int SetValue(string text)
+        {
+            var num = 0;
+            var inText = text;
+
+            while (int.TryParse(inText, out num) == false)
+            {
+                inText = GetValue("Incorrect text,try again");
+            }
+
+            return num;
+        }
+
+        private void ShowWindow()
+        {
+            Console.WriteLine($"{"ID :",-10}{"Name:",-10}{"Weight:",-10}");
+            foreach (var item in market.Windows)
+            {
+                Console.WriteLine($"{item.Id,-10} {item.Name,-10} {item.Weight,-10} ");
+            }
+        }
+
         public void Start()
         {
-            List<Products> product = new List<Products>(4);
-            Console.WriteLine("Hi");
-            
-            product.Add(new Products() { ProductName = "crank arm", ProductWeight = 1234,  });
-            product.Add(new Products() { ProductName = "111", ProductWeight = 321, });
-
-
-
-
-
+            List<Product> product = new List<Product>();
               
 
                bool isContinue = true;
@@ -57,47 +78,48 @@ namespace Market
 
                    switch (operation.ToLower())
                    {
-                       case Operations.SHOW_WINDOW_LIST:
-                        ShowWindowList();
+                       case DisplayOperations.SHOW_WINDOW_LIST:
+
+                        ShowWindow();
                            break;
 
-                       case Operations.ADD_NEW_WINDOW:
-                        AddWindow();
+                       case DisplayOperations.ADD_NEW_WINDOW:
+                        market.AddItem(GetValue("Введите имя ветрины"), SetValue(GetValue("Введите вес витрины")));
+                        break;
+
+                       case DisplayOperations.EDIT_WINDOW:
+                      //  EditWindow();
                            break;
 
-                       case Operations.EDIT_WINDOW:
-                        EditWindow();
+                       case DisplayOperations.DELETE_WINDOW:
+                    //    DeleteWindow();
                            break;
 
-                       case Operations.DELETE_WINDOW:
-                        DeleteWindow();
+                       case DisplayOperations.ADD_PRODUCT_TO_WINDOW:
+                   //     AddProductToWindow();
                            break;
 
-                       case Operations.ADD_PRODUCT_TO_WINDOW:
-                        AddProductToWindow();
+                       case DisplayOperations.DELETE_PRODUCT_FROM_WINDOW:
+                     //   DeleteProductFromWindow();
                            break;
 
-                       case Operations.DELETE_PRODUCT_FROM_WINDOW:
-                        DeleteProductFromWindow();
+                       case DisplayOperations.SHOW_PRODUCT_LIST:
+                   //        ShowProductList();
                            break;
 
-                       case Operations.SHOW_PRODUCT_LIST:
-                           ShowProductList();
+                       case DisplayOperations.ADD_PRODUCT:
+                       //    AddProduct();
                            break;
 
-                       case Operations.ADD_PRODUCT:
-                           AddProduct();
+                       case DisplayOperations.EDIT_PRODUCT:
+                      //     EditProduct();
                            break;
 
-                       case Operations.EDIT_PRODUCT:
-                           EditProduct();
+                       case DisplayOperations.DELETE_PRODUCT:
+                     //      DeleteProduct();
                            break;
 
-                       case Operations.DELETE_PRODUCT:
-                           DeleteProduct();
-                           break;
-
-                    case Operations.EXIT:
+                    case DisplayOperations.EXIT:
                            isContinue = false;
                            break;
 
