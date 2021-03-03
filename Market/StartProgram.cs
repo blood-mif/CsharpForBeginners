@@ -92,7 +92,7 @@ namespace Market
                            break;
 
                        case DisplayOperations.DELETE_WINDOW:
-                    //    DeleteWindow();
+                        market.DeleteItem(SetValue(GetValue("Введите вес витрины")));
                            break;
 
                        case DisplayOperations.ADD_PRODUCT_TO_WINDOW:

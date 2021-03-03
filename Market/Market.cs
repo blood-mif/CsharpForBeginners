@@ -19,14 +19,28 @@ namespace Market
 
         public bool DeleteItem(int id)
         {
-          
-            
-            throw new NotImplementedException();
+
+            var removeWindonw = Windows.Where(window => window.Id == id).ToList();
+            if (removeWindonw.Count == 0)
+            {
+                return false;
+            }
+
+            Windows.Remove(removeWindonw[0]);
+            return true;
+
         }
 
         public bool EditItem(int id)
         {
-            throw new NotImplementedException();
+            var editWindonw = Windows.Where(window => window.Id == id).ToList();
+            if (editWindonw.Count == 0)
+            {
+                return false;
+            }
+
+            Windows.Remove(editWindonw[0]);
+            return true;
         }
     }
 }
