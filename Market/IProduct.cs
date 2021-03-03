@@ -2,10 +2,12 @@
 {
     interface IProduct
     {
-        void AddProduct(string productName,int productWeight);
+        void ShowProductList(string productName,int productWeight);
 
         void EditProduct();
 
         void DeleteProduct();
+
+        void AddProduct();
     }
 }

@@ -6,10 +6,11 @@ namespace Market
 {
     public class Window
     {
+        static int _idWindow = 1;
         public Window()
         {
             CreationDateWindow = DateTime.Now;
-            WindowId = ++WindowId;
+            WindowId = _idWindow++;
         }
 
         public int WindowId { get; set; }

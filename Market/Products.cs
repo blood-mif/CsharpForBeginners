@@ -6,6 +6,8 @@ namespace Market
     public class Products :IProduct
     {
 
+
+
         static int _idProduct = 1;
 
         public Products()
@@ -19,23 +21,29 @@ namespace Market
 
         public int ProductWeight { get;set; }
 
-        public void AddProduct(string productName, int productSize)
+
+
+        public void AddProduct()
         {
+
+
             Console.Write("Введите название продукта: ");
-            string title = Console.ReadLine();
+            string _title = Console.ReadLine();
 
             Console.Write("Введите вес продукта: ");
-            int weight = int.Parse(Console.ReadLine()); 
+            int _weight = int.Parse(Console.ReadLine()); 
 
 
-            Products newProduct = new Products
+            Products product = new Products
             {
-                ProductName = title,
-                ProductWeight = weight
+                ProductName = _title,
+                ProductWeight = _weight
             };
-            
-           // _issueList.Add(newProduct);
+
+
         }
+
+
 
         public void DeleteProduct()
         {
@@ -45,6 +53,15 @@ namespace Market
         public void EditProduct()
         {
             throw new System.NotImplementedException();
+        }
+
+        public void ShowProduct(string productName, int productWeight)
+        {
+            List<Products> product = new List<Products>();
+            foreach (var item in product)
+            {
+                Console.WriteLine(item);
+            }
         }
 
         public override string ToString()

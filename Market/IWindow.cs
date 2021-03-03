@@ -2,7 +2,7 @@
 {
     interface IWindow
     {
-        void ShowWindow();
+        void ShowWindowList();
 
         void AddWindow(string windowName, int windowSize );
 
