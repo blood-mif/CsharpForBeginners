@@ -40,7 +40,7 @@ namespace Market
             return true;
         }
 
-        public bool EditItem(int id)
+        public bool EditItem(int id, string name, int weight)
         {
 
             return false;

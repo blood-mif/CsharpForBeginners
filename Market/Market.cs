@@ -9,6 +9,8 @@ namespace Market
     {
 
         public List<Window> Windows = new List<Window>() ;
+       public List<Product> ProductList = new List<Product>();
+
 
         public bool AddItem(string name, int maxWeightWindow)
         {
@@ -26,20 +28,37 @@ namespace Market
                 return false;
             }
 
+            if (0 < removeWindonw[0].Products.Select(coureWeight => coureWeight.Weight).Sum())
+            {
+                return false;
+            }
+
             Windows.Remove(removeWindonw[0]);
             return true;
 
         }
 
-        public bool EditItem(int id)
+        public bool EditItem(int id, string newName, int newWeight)
         {
+            
             var editWindonw = Windows.Where(window => window.Id == id).ToList();
             if (editWindonw.Count == 0)
             {
                 return false;
             }
 
-            Windows.Remove(editWindonw[0]);
+           if (newWeight<=editWindonw[0].Products.Select(coureWeight => coureWeight.Weight).Sum())
+            {
+                return false;
+            }
+
+            
+            int indexItem = Windows.IndexOf(editWindonw[0]);
+
+            Windows[indexItem].Name = newName;
+            Windows[indexItem].Weight = newWeight;
+
+
             return true;
         }
     }

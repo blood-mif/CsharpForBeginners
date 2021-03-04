@@ -18,25 +18,47 @@ namespace Market
         public string Name { get; set; }
         public int Weight { get; set; }
         public int Id { get; set; }
+        public decimal Price { get; set; }
 
-        public bool AddItem<T>(T item)
+        public List<Product> ProductList = new List<Product>();
+
+        public bool AddItem(string nameProduct,int weightProduct)
         {
-            throw new NotImplementedException();
+            var product = new Product(nameProduct, weightProduct);
+            ProductList.Add(product);
+            return true;
         }
 
-        public bool DeleteItem<T>(T item)
+        public bool DeleteItem(int id)
         {
-            throw new NotImplementedException();
+
+            var removeProduct = ProductList.Where(product => product.Id == id).ToList();
+            if (removeProduct.Count == 0)
+            {
+                return false;
+            }
+
+
+            ProductList.Remove(removeProduct[0]);
+            return true;
         }
 
-        public bool EditItem<T>(T item)
+        public bool EditItem(int id,string newName, int newWeight)
         {
-            throw new NotImplementedException();
-        }
+            var editProduct = ProductList.Where(product => product.Id == id).ToList();
+            if (editProduct.Count == 0)
+            {
+                return false;
+            }
 
-        public bool EditItem(int item)
-        {
-            throw new NotImplementedException();
+
+            int indexItem = ProductList.IndexOf(editProduct[0]);
+
+            ProductList[indexItem].Name = newName;
+            ProductList[indexItem].Weight = newWeight;
+
+
+            return true;
         }
 
 

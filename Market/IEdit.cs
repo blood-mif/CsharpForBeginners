@@ -2,6 +2,6 @@
 {
    public interface IEdit
     {
-        bool EditItem(int id);
+        bool EditItem(int id, string newName, int newWeight);
     }
 }

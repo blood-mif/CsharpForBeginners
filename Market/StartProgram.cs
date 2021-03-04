@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 
 namespace Market
@@ -53,12 +54,38 @@ namespace Market
             }
         }
 
+        private void ShowProducts()
+        {
+            Console.WriteLine($"{"ID :",-10}{"Name:",-10}{"Weight:",-10}");
+            foreach (var item in market.ProductList)
+            {
+                Console.WriteLine($"{item.Id,-10} {item.Name,-10} {item.Weight,-10} ");
+            }
+        }
+
         public void Start()
         {
-            List<Product> product = new List<Product>();
-              
 
-               bool isContinue = true;
+            //Дефолтное создание витрин
+            market.Windows = new List<Window>
+                
+            {
+                new Window("Name1",23),
+                new Window("Name2",13),
+                new Window("Name3",4),
+
+            };
+
+            //Дефолтное создание продуктов
+            market.ProductList = new List<Product>
+            {
+                new Product("Product_1", 1),
+                new Product("Product_2", 3),
+                new Product("Product_3", 2),
+            };
+
+
+            bool isContinue = true;
 
                while (isContinue)
                {
@@ -84,15 +111,15 @@ namespace Market
                            break;
 
                        case DisplayOperations.ADD_NEW_WINDOW:
-                        market.AddItem(GetValue("Введите имя ветрины"), SetValue(GetValue("Введите вес витрины")));
+                        market.AddItem(GetValue("Введите имя ветрины"), SetValue(GetValue("Введите вместимость витрины")));
                         break;
 
                        case DisplayOperations.EDIT_WINDOW:
-                      //  EditWindow();
-                           break;
+                      market.EditItem((SetValue(GetValue("Введите id витрины"))),GetValue("Введите имя ветрины"), SetValue(GetValue("Введите вместимость витрины")));
+                        break;
 
                        case DisplayOperations.DELETE_WINDOW:
-                        market.DeleteItem(SetValue(GetValue("Введите вес витрины")));
+                        market.DeleteItem(SetValue(GetValue("Введите id витрины")));
                            break;
 
                        case DisplayOperations.ADD_PRODUCT_TO_WINDOW:
@@ -104,20 +131,24 @@ namespace Market
                            break;
 
                        case DisplayOperations.SHOW_PRODUCT_LIST:
-                   //        ShowProductList();
-                           break;
+                        ShowProducts();
+                        break;
 
                        case DisplayOperations.ADD_PRODUCT:
-                       //    AddProduct();
-                           break;
+                        market.ProductList.Add(new Product(GetValue("Введите имя продукта"), SetValue(GetValue("Введите вес продукта"))));
+                        break;
 
                        case DisplayOperations.EDIT_PRODUCT:
-                      //     EditProduct();
+
                            break;
 
                        case DisplayOperations.DELETE_PRODUCT:
-                     //      DeleteProduct();
-                           break;
+                        var ss= SetValue(GetValue("Введите id продукта"));
+                        var ss1 = market.ProductList.Where(dat => dat.Id == ss).ToList()[0];
+                        var ss2 = market.ProductList.IndexOf(ss1);
+                        //market.ProductList.Remove(ss1);
+                        market.ProductList.RemoveAt(ss2);
+                        break;
 
                     case DisplayOperations.EXIT:
                            isContinue = false;
