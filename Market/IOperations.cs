@@ -2,12 +2,16 @@
 {
     interface IOperations
     {
-        //  void ShowList(string productName,int productWeight);
 
 
-        bool DeleteItem(int item);
+        bool DeleteWindow(int item);
+        bool AddWindow(string name, int weight);
+        bool EditWindow(int id, string newName, int newWeight);
 
-        bool AddItem(string name, int weight);
+        
+        bool EditProduct(int id, string newName, int newWeight);
+        bool DeleteProduct(int id);
+
 
 
 

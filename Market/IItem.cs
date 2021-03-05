@@ -11,7 +11,6 @@ namespace Market
 
         int Weight { get; set; }
 
-        int Id { get; set; }
 
     }
 }
