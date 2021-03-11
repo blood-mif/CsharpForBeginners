@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Market
 {
-    public class Market : IOperations, IEdit
+    public class Market : IMarketOperations, IEdit
     {
 
         public List<Window> Windows = new List<Window>() ;

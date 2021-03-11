@@ -12,7 +12,6 @@ namespace Market
             Weight = weight;
             Price = price;
         }
-
         public string Name { get; set; }
         public int Weight { get; set; }
         public decimal Price { get; set; }

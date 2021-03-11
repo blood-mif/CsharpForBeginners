@@ -6,11 +6,7 @@ namespace Market
 {
      public interface IItem
     {
-
         string Name { get; set; }
-
         int Weight { get; set; }
-
-
     }
 }

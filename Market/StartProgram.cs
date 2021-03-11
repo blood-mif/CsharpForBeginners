@@ -74,16 +74,14 @@ namespace Market
             int indexProduct = 1;
             foreach (var item in market.ProductList)
             {
-                Console.WriteLine(indexProduct++ + "\t"+ item.Text);
+                Console.WriteLine(indexProduct++ + "\t" + item.Text);
             }
         }
 
         public void Start()
         {
-
             //Дефолтное создание витрин
             market.Windows = new List<Window>
-                
             {
                 new Window("Window_Name1",7),
                 new Window("Window_Name2",10),
@@ -103,95 +101,90 @@ namespace Market
             market.Windows[0].Products.Add(new Product("Product_1", 1, 100));
             market.Windows[0].Products.Add(new Product("Product_2", 2, 200));
 
-
             bool isContinue = true;
 
-               while (isContinue)
-               {
-                   Console.WriteLine("1  - Вывести список витрин");
-                   Console.WriteLine("2  - Добавить витрину");
-                   Console.WriteLine("3  - Редактировать витрину");
-                   Console.WriteLine("4  - Удалить витрину");
-                   Console.WriteLine("5  - Показать продукты на витрине");
-                   Console.WriteLine("6  - Добавить продукт на витрину");
-                   Console.WriteLine("7  - Удалить продукт с витрины");
-                   Console.WriteLine("8  - Вывести список продуктов");
-                   Console.WriteLine("9  - Добавить продукт");
-                   Console.WriteLine("10 - Редактировать продукт");
-                   Console.WriteLine("11 - Удалить продукт");
-                   Console.WriteLine("x  - Выход из программы");
+            while (isContinue)
+            {
+                Console.WriteLine("1  - Вывести список витрин");
+                Console.WriteLine("2  - Добавить витрину");
+                Console.WriteLine("3  - Редактировать витрину");
+                Console.WriteLine("4  - Удалить витрину");
+                Console.WriteLine("5  - Показать продукты на витрине");
+                Console.WriteLine("6  - Добавить продукт на витрину");
+                Console.WriteLine("7  - Удалить продукт с витрины");
+                Console.WriteLine("8  - Вывести список продуктов");
+                Console.WriteLine("9  - Добавить продукт");
+                Console.WriteLine("10 - Редактировать продукт");
+                Console.WriteLine("11 - Удалить продукт");
+                Console.WriteLine("x  - Выход из программы");
 
-                   string operation = Console.ReadLine();
+                string operation = Console.ReadLine();
 
-                   switch (operation.ToLower())
-                   {
-                       case DisplayOperations.SHOW_WINDOW_LIST:
+                switch (operation.ToLower())
+                {
+                    case DisplayOperations.SHOW_WINDOW_LIST:
 
                         ShowWindow();
-                           break;
+                        break;
 
-                       case DisplayOperations.ADD_NEW_WINDOW:
+                    case DisplayOperations.ADD_NEW_WINDOW:
                         market.AddWindow(GetValue("Введите имя ветрины"), SetValue(GetValue("Введите вместимость витрины")));
                         break;
 
-                       case DisplayOperations.EDIT_WINDOW:
-                      market.EditWindow((SetValue(GetValue("Введите id витрины"))),GetValue("Введите имя ветрины"), SetValue(GetValue("Введите вместимость витрины")));
+                    case DisplayOperations.EDIT_WINDOW:
+                        market.EditWindow((SetValue(GetValue("Введите id витрины"))), GetValue("Введите имя ветрины"), SetValue(GetValue("Введите вместимость витрины")));
                         break;
 
-                       case DisplayOperations.DELETE_WINDOW:
+                    case DisplayOperations.DELETE_WINDOW:
                         market.DeleteWindow(SetValue(GetValue("Введите id витрины")));
-                           break;
-
-                        case DisplayOperations.SHOW_PRODUCT_ON_WINDOW:
-                         market.ShowProductsOnWindow(SetValue(GetValue("Введите id витрины")));
                         break;
 
-                        case DisplayOperations.ADD_PRODUCT_TO_WINDOW:
+                    case DisplayOperations.SHOW_PRODUCT_ON_WINDOW:
+                        market.ShowProductsOnWindow(SetValue(GetValue("Введите id витрины")));
+                        break;
+
+                    case DisplayOperations.ADD_PRODUCT_TO_WINDOW:
                         market.AddProductOnWindow(SetValue(GetValue("Введите id витрины")), SetValue(GetValue("Введите id продукта")));
                         break;
 
-                       case DisplayOperations.DELETE_PRODUCT_FROM_WINDOW:
-                           market.DeleteProductFromWindow(SetValue(GetValue("Введите id витрины")), SetValue(GetValue("Введите id продукта")));
+                    case DisplayOperations.DELETE_PRODUCT_FROM_WINDOW:
+                        market.DeleteProductFromWindow(SetValue(GetValue("Введите id витрины")), SetValue(GetValue("Введите id продукта")));
 
                         break;
 
-                       case DisplayOperations.SHOW_PRODUCT_LIST:
+                    case DisplayOperations.SHOW_PRODUCT_LIST:
                         ShowProducts();
                         break;
 
-                       case DisplayOperations.ADD_PRODUCT:
-                        market.AddProduct(GetValue("Введите имя продукта"),SetValue(GetValue("Введите вес продукта")),SetPrice(GetValue("Введите цену")));
+                    case DisplayOperations.ADD_PRODUCT:
+                        market.AddProduct(GetValue("Введите имя продукта"), SetValue(GetValue("Введите вес продукта")), SetPrice(GetValue("Введите цену")));
                         break;
 
-                       case DisplayOperations.EDIT_PRODUCT:
-                        market.EditProduct(SetValue(GetValue("Введите id продукта")),GetValue("Введите имя продукта"),SetValue(GetValue("Введите вес продукта")));
-                           break;
+                    case DisplayOperations.EDIT_PRODUCT:
+                        market.EditProduct(SetValue(GetValue("Введите id продукта")), GetValue("Введите имя продукта"), SetValue(GetValue("Введите вес продукта")));
+                        break;
 
-                       case DisplayOperations.DELETE_PRODUCT:
+                    case DisplayOperations.DELETE_PRODUCT:
                         market.DeleteProduct(SetValue(GetValue("Введите id продукта")));
                         break;
 
                     case DisplayOperations.EXIT:
-                           isContinue = false;
-                           break;
+                        isContinue = false;
+                        break;
 
-                       default:
-                           Console.WriteLine("Такой команды нет! " + operation);
-                           break;
-                   }
+                    default:
+                        Console.WriteLine("Такой команды нет! " + operation);
+                        break;
+                }
 
-                   if (isContinue)
-                   {
-                       Console.WriteLine();
-                       Console.WriteLine("Press any key ");
-                       Console.ReadKey();
-                       Console.Clear();
-                   }
-
-               }
-            
+                if (isContinue)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Press any key ");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
+            }
         }
-
-
     }
 }
