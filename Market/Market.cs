@@ -7,16 +7,8 @@ namespace Market
 {
     public class Market : IMarketOperations, IEdit
     {
-
-        //public List<Window> Windows = new List<Window>() ;
-        //   public List<Product> ProductList = new List<Product>();
-        //
         private List<Window> Windows;
         private List<Product> ProductList;
-        //
-
-
-        //
 
         public Market()
         {
@@ -28,13 +20,10 @@ namespace Market
         {
             return Windows;
         }
-
         public List<Product> ShowProductList()
         {
             return ProductList;
         }
-        //
-
         public bool AddWindow(string name, int maxWeightWindow)
         {
             var window = new Window(name, maxWeightWindow);
@@ -207,7 +196,5 @@ namespace Market
 
             return true;
         }
-
     }
-
 }
