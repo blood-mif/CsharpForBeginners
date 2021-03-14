@@ -8,8 +8,32 @@ namespace Market
     public class Market : IMarketOperations, IEdit
     {
 
-        public List<Window> Windows = new List<Window>() ;
-        public List<Product> ProductList = new List<Product>();
+        //public List<Window> Windows = new List<Window>() ;
+        //   public List<Product> ProductList = new List<Product>();
+        //
+        private List<Window> Windows;
+        private List<Product> ProductList;
+        //
+
+
+        //
+
+        public Market()
+        {
+            Windows = new List<Window>();
+            ProductList = new List<Product>();
+        }
+
+        public List<Window> ShowAllWindows()
+        {
+            return Windows;
+        }
+
+        public List<Product> ShowProductList()
+        {
+            return ProductList;
+        }
+        //
 
         public bool AddWindow(string name, int maxWeightWindow)
         {
@@ -50,10 +74,26 @@ namespace Market
                 return false;
             }
 
-            if (Windows[indexEdit].Weight < Windows[indexEdit].Products.Select(coureWeight => coureWeight.Weight).Sum() + newWeight)
+            if (newWeight < 0)
             {
-                Console.WriteLine("Вместимость витрины не может быть меньше, чем обьём занимаемых её товаров ");
+                Console.WriteLine("Вместимость витрины не может быть отрицательной ");
                 return false;
+            }
+
+            var sumAllProductOnWindow = Windows[indexEdit].Products.Select(coureWeight => coureWeight.Weight).Sum();
+            /*
+             Как грамотнее написать?
+             Объявить переменную равную сумме продуктов на витрине, и сначала сделать проверку есть ли продукты вообще на витрине,
+            чтоб не делать проверку на вместимость в случае true
+            или сразу делать проверку с подсчётом суммы и проверки соотношения?
+             */
+            if (sumAllProductOnWindow != 0 )
+            {
+                if (newWeight < sumAllProductOnWindow)
+                {
+                    Console.WriteLine("Вместимость витрины не может быть меньше, чем обьём занимаемых её товаров ");
+                    return false;
+                }
             }
 
             Windows[indexEdit].Name = newName;
@@ -72,7 +112,7 @@ namespace Market
         {
 
             var indexDelete = id - 1;
-            if (0 < ProductList.Count  && ProductList.Count <= indexDelete)
+            if (0 < ProductList.Count && ProductList.Count <= indexDelete)
             {
                 Console.WriteLine("Вы ввели не правильный id");
                 return false;
@@ -82,7 +122,7 @@ namespace Market
             Console.WriteLine("Продукт удалён");
             return true;
         }
-        public bool EditProduct(int id, string newName, int newWeight)
+        public bool EditProduct(int id, string newName, int newWeight, decimal newPrice)
         {
             var indexEdit = id - 1;
             if (0 < ProductList.Count && ProductList.Count <= indexEdit)
@@ -93,10 +133,11 @@ namespace Market
 
             ProductList[indexEdit].Name = newName;
             ProductList[indexEdit].Weight = newWeight;
+            ProductList[indexEdit].Price = newPrice;
             Console.WriteLine("Продукт изменён");
             return true;
         }
-        public bool AddProductOnWindow(int idWindow,int idProduct)
+        public bool AddProductOnWindow(int idWindow, int idProduct)
         {
             var indexWindow = idWindow - 1;
 
@@ -114,7 +155,7 @@ namespace Market
             }
 
             var coureWeight = Windows[indexWindow].Products.Select(rrr => rrr.Weight).Sum();
-            
+
             if (coureWeight + ProductList[indexProduct].Weight > Windows[indexWindow].Weight)
             {
                 Console.WriteLine("Данный товар нельзя добавить на витрину из за ограничения по весу");
@@ -157,10 +198,10 @@ namespace Market
             }
 
             int indexNumber = 1;
-                Console.WriteLine($"{"ID ",-10}{"Name:",-10}{"Weight:",-10}{"Price:",+13}");
+            Console.WriteLine($"{"ID ",-10}{"Name:",-10}{"Weight:",-10}{"Price:",+13}");
             foreach (var item in Windows[indexProductOnWindow].Products)
             {
-                Console.WriteLine("Id :" + indexNumber+"\t" + item.Text);
+                Console.WriteLine("Id :" + indexNumber + "\t" + item.Text);
                 indexNumber++;
             }
 
