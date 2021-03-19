@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace Market
 {
+
     public class Product : IItem
     {
         public Product(string name, int weight, decimal price)

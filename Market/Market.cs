@@ -7,6 +7,7 @@ namespace Market
 {
     public class Market : IMarketOperations, IEdit
     {
+        
         private List<Window> Windows;
         private List<Product> ProductList;
 
